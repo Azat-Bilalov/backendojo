@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket Server Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1>Socket Server Test</h1>
+    <script>
+        var socket = io();
+        socket.on('connect', function () {
+            console.log('Connected!');
+        });
+        socket.on('message', function (data) {
+            console.log('Message received: ' + data);
+        });
+        function connectToStation() {
+            console.log('Connecting to station...');
+            socket.emit('connect to station', 'http://localhost:8081');
+        }
+    </script>
+    <button type="button" onclick="connectToStation()">
+        Connect to station
+    </button>
+</body>
+
+</html>

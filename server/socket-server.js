@@ -1,3 +1,4 @@
+const { stat } = require("fs");
 const { Server } = require("socket.io");
 
 /*
@@ -30,6 +31,11 @@ module.exports = (server) => {
           socket: stationSocket,
           clients: [socket],
         };
+        stationSocket.on("state", (state) => {
+          Object.values(stations[url].clients).forEach((client) => {
+            client.emit("state", state);
+          });
+        });
       } else {
         socket.emit("message", `successfully connected to station ${url}`);
         stations[url].clients.push(socket);

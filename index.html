@@ -16,13 +16,26 @@
         socket.on('message', function (data) {
             console.log('Message received: ' + data);
         });
+        socket.on('state', function (data) {
+            console.log('State received:', data);
+        });
         function connectToStation() {
             console.log('Connecting to station...');
-            socket.emit('connect to station', 'http://localhost:8081');
+            const host = document.getElementById('host').value;
+            socket.emit('connect to station', host);
+        }
+        function disconnectFromStation() {
+            console.log('Disconnecting from station...');
+            socket.disconnect();
+            console.log('Disconnected!');
         }
     </script>
+    <input type="text" id="host">
     <button type="button" onclick="connectToStation()">
         Connect to station
+    </button>
+    <button type="button" onclick="disconnectFromStation()">
+        Disconnect from station
     </button>
 </body>
 

@@ -29,7 +29,11 @@ station = {
 const stations = {};
 
 module.exports = (server) => {
-  const io = new Server(server);
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+    },
+  });
 
   /** подключение к клиента к ЦУП */
   io.on("connection", (clientSocket) => {

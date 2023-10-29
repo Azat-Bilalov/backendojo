@@ -1,15 +1,16 @@
 const express = require("express");
-const { URL } = require("url");
 const path = require("path");
 const http = require("http");
 const cors = require("cors");
 
 const app = express();
-app.use(cors({
-  origin: '*'
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-app.use(express.static('public'))
+app.use(express.static("public"));
 serverSocket = require("./server/socket-server");
 const server = http.createServer(app);
 

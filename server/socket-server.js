@@ -111,7 +111,7 @@ module.exports = (server) => {
           }
 
           /** изменение состояния персонажа */
-          if (state.health !== station.currentState.health) {
+          if (state.health !== station.currentState.health || station.currentState.health === undefined) {
             station.currentState.health = state.health;
             Object.values(stations[url].clients).forEach((client) => {
               client.emit("health", state.health);

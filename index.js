@@ -4,6 +4,7 @@ const path = require("path");
 const http = require("http");
 
 const app = express();
+app.use(express.static('public'))
 serverSocket = require("./server/socket-server");
 const server = http.createServer(app);
 

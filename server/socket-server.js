@@ -41,7 +41,7 @@ module.exports = (server) => {
 
     /** запрос клиента на подключение к станции по url */
     clientSocket.on("connectToStation", (url) => {
-      console.log("a user connected to station");
+      console.log("a user connecting to station");
 
       /** если пользователь уже подключен к станции, сбрасываем подключение */
       Object.values(stations).forEach((station) => {
@@ -163,6 +163,13 @@ module.exports = (server) => {
         );
         stations[url].clients.push(clientSocket);
       }
+
+      /** отправка всей информации на клиент */
+      const station = stations[url];
+      clientSocket.emit("allInfo", {
+        ...station.currentState,
+        nearLocations: station.localMap,
+      });
     });
 
     /** шаг вперед */

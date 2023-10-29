@@ -8,7 +8,7 @@ module.exports = (url) => {
     console.log(`station ${url} says: ${msg}`);
   });
   socket.on("state", (state) => {
-    console.log(`station ${url} state:`, state);
+    console.log(`station ${url} state: ${state}`);
   });
   socket.on("disconnect", () => {
     console.log(`disconnected from station ${url}`);

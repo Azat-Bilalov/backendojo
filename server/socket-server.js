@@ -166,10 +166,12 @@ module.exports = (server) => {
 
       /** отправка всей информации на клиент */
       const station = stations[url];
-      clientSocket.emit("allInfo", {
+      const info = {
         ...station.currentState,
         nearLocations: station.localMap,
-      });
+      };
+      console.log("allInfo", info);
+      clientSocket.emit("allInfo", info);
     });
 
     /** шаг вперед */

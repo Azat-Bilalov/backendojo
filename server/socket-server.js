@@ -68,6 +68,7 @@ module.exports = (server) => {
         stationSocket.on("connect_error", () => {
           delete stations[url];
           clientSocket.emit("message", `failed to connect to station ${url}`);
+          stationSocket.disconnect();
         });
 
         /** если удалось подключиться к станции, то добавляем ее в список */

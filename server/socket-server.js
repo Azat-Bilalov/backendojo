@@ -105,6 +105,7 @@ module.exports = (server) => {
                 coordinates: state.coordinates,
                 direction: state.direction,
                 location: state.location,
+                health: state.health,
                 nearLocations: station.localMap,
               });
             });
